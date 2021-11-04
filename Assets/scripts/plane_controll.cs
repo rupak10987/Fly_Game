@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class plane_controll : MonoBehaviour
 {
-    public float mousesensitivity = 300.0f;
+    public Rigidbody rb;
+    public float mousesensitivity = 300f;
     public float rot_speed = 1.0f;
     public float f_speed = 30.0f;
     public float accelaration=20.0f;
     public float cam_smooth_time = 0.09f;
-    [SerializeField] private float cinematic_amount=0.02f;
     private Vector3 velocity = Vector3.zero;
     Vector3 transition= Vector3.up;
-   [SerializeField] private float Camera_offset_f=1f;
+    [SerializeField] private float cinematic_amount = 0.02f;
+    [SerializeField] private float Camera_offset_f=1f;
     [SerializeField] private float Camera_offset_up = 5f;
+    private float time_c=0f;
     void Start()
     {
+        
     }
 
     void FixedUpdate()
     {
-       
         if(Input.GetKey(KeyCode.LeftShift))
         {
             rot_speed += Time.fixedDeltaTime*2f;
@@ -33,9 +35,11 @@ public class plane_controll : MonoBehaviour
                 rot_speed -= Time.fixedDeltaTime * 5f;
             }
         }
-     
-        float mouse_cntrl = ((Input.mousePosition.x - 1920 / 2) / 1920) * Time.fixedDeltaTime * mousesensitivity;
-        transform.Rotate(Input.GetAxis("Vertical") * rot_speed, mouse_cntrl, -Input.GetAxis("Horizontal")*rot_speed);
+
+        float mouse_cntrl =((Input.mousePosition.x - 1920 / 2) / 1920) * Time.fixedDeltaTime * mousesensitivity;
+        float pitch_ctrl= Input.GetAxis("Vertical") * rot_speed;
+        float roll_ctrl = -Input.GetAxis("Horizontal") * rot_speed;
+        transform.Rotate(pitch_ctrl, mouse_cntrl, roll_ctrl);
         transform.position = transform.position + transform.forward *Time.fixedDeltaTime * f_speed;
 
         camera_update();
@@ -69,9 +73,10 @@ public class plane_controll : MonoBehaviour
 
     void speed_tune_up()
     {
-        if (f_speed < 10.0f)
-            f_speed = 10.0f;
-        if (f_speed > 100.0f)
-            f_speed = 100.0f;
+        if (f_speed < 30.0f)
+            f_speed = 30.0f;
+        if (f_speed > 80.0f)
+            f_speed = 80.0f;
     }
+
 }
