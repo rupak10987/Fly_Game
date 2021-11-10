@@ -19,8 +19,8 @@ public class rotor : MonoBehaviour
     {
         updater = obj.GetComponent<plane_controll>();
         rot_speed = updater.f_speed;
-        if (rot_speed < 40f)
-            rot_speed = 40f;
+        if (rot_speed < 20f)
+            rot_speed = 20f;
         rot_speed*=Time.deltaTime*r_speed_m;
         transform.RotateAround(updater.transform.position, updater.transform.forward, rot_speed);
 

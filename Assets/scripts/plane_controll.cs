@@ -15,7 +15,8 @@ public class plane_controll : MonoBehaviour
     [SerializeField] private float cinematic_amount = 0.02f;
     [SerializeField] private float Camera_offset_f=1f;
     [SerializeField] private float Camera_offset_up = 5f;
-    private float time_c=0f;
+    private float time_going_down=0f;
+    private float time_going_up = 0f;
     void Start()
     {
         
@@ -23,7 +24,8 @@ public class plane_controll : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
+        Gravity_sim();
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             rot_speed += Time.fixedDeltaTime*2f;
             if (rot_speed > 2f)
@@ -35,8 +37,9 @@ public class plane_controll : MonoBehaviour
                 rot_speed -= Time.fixedDeltaTime * 5f;
             }
         }
+        
 
-        float mouse_cntrl =((Input.mousePosition.x - 1920 / 2) / 1920) * Time.fixedDeltaTime * mousesensitivity;
+        float mouse_cntrl =((Input.mousePosition.x - 1920/ 2) / 1920) * Time.fixedDeltaTime * mousesensitivity;
         float pitch_ctrl= Input.GetAxis("Vertical") * rot_speed;
         float roll_ctrl = -Input.GetAxis("Horizontal") * rot_speed;
         transform.Rotate(pitch_ctrl, mouse_cntrl, roll_ctrl);
@@ -46,6 +49,8 @@ public class plane_controll : MonoBehaviour
         f_speed -= transform.forward.y * Time.fixedDeltaTime * accelaration;
         speed_on_cmd();
         speed_tune_up();
+        Vector3 rott = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        rotation_tune(rott,pitch_ctrl+roll_ctrl);
     }
 
     void camera_update()
@@ -78,5 +83,48 @@ public class plane_controll : MonoBehaviour
         if (f_speed > 80.0f)
             f_speed = 80.0f;
     }
+    void Gravity_sim()
+    {
 
+        float displace = 0; ;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (time_going_down <= 0)
+            {
+                time_going_up += Time.fixedDeltaTime;
+                displace = 0.01f * time_going_up;
+                transform.position = new Vector3(transform.position.x, (transform.position.y + displace), transform.position.z);
+            }
+            else
+            {
+                time_going_down -= Time.fixedDeltaTime;
+                displace = 0.01f * time_going_down;
+                transform.position = new Vector3(transform.position.x, (transform.position.y - displace), transform.position.z);
+            }
+
+        }
+        else
+        {
+            if (time_going_up <= 0)
+            {
+                time_going_down += Time.fixedDeltaTime;
+                displace = 0.01f * time_going_down;
+                transform.position = new Vector3(transform.position.x, (transform.position.y - displace), transform.position.z);
+
+            }
+            else
+            {
+                time_going_up -= Time.fixedDeltaTime;
+                displace = 0.01f * time_going_up;
+                transform.position = new Vector3(transform.position.x, (transform.position.y + displace), transform.position.z);
+            }
+
+
+        }
+    }
+
+    void rotation_tune(Vector3 rot, float inpuut)
+    {
+     
+    }
 }
