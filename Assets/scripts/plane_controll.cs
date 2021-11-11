@@ -28,8 +28,8 @@ public class plane_controll : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             rot_speed += Time.fixedDeltaTime*2f;
-            if (rot_speed > 2f)
-                rot_speed = 2f;
+            if (rot_speed > 2.01f)
+                rot_speed = 2.01f;
         }
         else
         { if (rot_speed > 1.0f)
@@ -92,6 +92,10 @@ public class plane_controll : MonoBehaviour
             if (time_going_down <= 0)
             {
                 time_going_up += Time.fixedDeltaTime;
+                // making changes
+                if (time_going_up > 0.2f)
+                    time_going_up = 0.2f;
+                //done
                 displace = 0.01f * time_going_up;
                 transform.position = new Vector3(transform.position.x, (transform.position.y + displace), transform.position.z);
             }

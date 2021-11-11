@@ -31,12 +31,15 @@ public class shoot : MonoBehaviour
     void fire_bullet()
     {
         GameObject finding = GameObject.Find("bullets");
-        GameObject capsule = GameObject.Instantiate(finding,null);
-        capsule.transform.position = transform.position + transform.forward *5 + transform.up*Random.Range(-1,1)+transform.right* Random.Range(-1, 1);
-        capsule.transform.rotation = transform.rotation;
-        capsule.AddComponent<Rigidbody>();
-        Rigidbody rb= capsule.GetComponent<Rigidbody>();
-        rb.AddForce((transform.forward+new Vector3(Random.Range(-0.02f,0.02f),0,0) )* 20000f);
-        Destroy(capsule,1f);
+        GameObject capsule = GameObject.Instantiate(finding);
+        capsule.transform.forward = transform.forward.normalized+new Vector3(Random.Range(-0.03f,0.03f),0,0);
+        capsule.transform.position = transform.position;
+        capsule.AddComponent<bullet>();
+        bullet rb= capsule.GetComponent<bullet>();
+        rb.speed = 400;
+        rb.xnot = capsule.transform.position.x;
+        rb.ynot = capsule.transform.position.y;
+        rb.znot = capsule.transform.position.z;
+        Destroy(capsule,3f);
     }
 }
