@@ -19,6 +19,46 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &9013651178695888427
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130175428768892667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.16
+  m_Center: {x: -1.46, y: 5.77, z: -0.46}
+--- !u!135 &4854019799038072094
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130175428768892667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.16
+  m_Center: {x: 0.72, y: 5.28, z: 0.25}
+--- !u!64 &3542372528740193155
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130175428768892667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1682125421048621038, guid: 94e2ebb3e0620494a897b5431ab02a4e, type: 3}
 --- !u!1001 &8941130339719068586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5c158b18f3ccec440bd0b1a109e62f36, type: 2}
     - target: {fileID: 919132149155446097, guid: 94e2ebb3e0620494a897b5431ab02a4e, type: 3}
       propertyPath: m_Name
-      value: new_TREES_2
+      value: new_TREES_2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2980787600890250681, guid: 94e2ebb3e0620494a897b5431ab02a4e, type: 3}
       propertyPath: m_ReceiveShadows

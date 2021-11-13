@@ -17,6 +17,7 @@ public class plane_controll : MonoBehaviour
     [SerializeField] private float Camera_offset_up = 5f;
     private float time_going_down=0f;
     private float time_going_up = 0f;
+
     void Start()
     {
         
@@ -32,7 +33,7 @@ public class plane_controll : MonoBehaviour
                 rot_speed = 2.01f;
         }
         else
-        { if (rot_speed > 1.0f)
+        { if (rot_speed > 1.5f)
             {
                 rot_speed -= Time.fixedDeltaTime * 5f;
             }
@@ -50,18 +51,26 @@ public class plane_controll : MonoBehaviour
         speed_on_cmd();
         speed_tune_up();
         Vector3 rott = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
-        rotation_tune(rott,pitch_ctrl+roll_ctrl);
+
     }
 
     void camera_update()
     {
         //camera
-        Vector3 cameratarget = transform.position - (Camera_offset_f * transform.forward) + Vector3.up * Camera_offset_up;
-        Camera.main.transform.position = Vector3.SmoothDamp(Camera.main.transform.position, cameratarget, ref velocity, cam_smooth_time);
-        transition= Vector3.SmoothDamp(transition, transform.up, ref velocity,cinematic_amount);
-        Camera.main.transform.LookAt(transform.position + transform.forward * 30f,transition);
-        // i need to store the current transiton value and delver the value for next frame
-
+        if(Input.GetKey(KeyCode.C))
+        {
+            Vector3 cameratarget1 = transform.position + (20 * transform.forward) + Vector3.up;
+            Camera.main.transform.position = cameratarget1;
+            Camera.main.transform.LookAt(transform.position,transform.up);
+        }
+        else
+        {
+            Vector3 cameratarget = transform.position - (Camera_offset_f * transform.forward) + Vector3.up * Camera_offset_up;
+            Camera.main.transform.position = Vector3.SmoothDamp(Camera.main.transform.position, cameratarget, ref velocity, cam_smooth_time);
+            transition = Vector3.SmoothDamp(transition, transform.up, ref velocity, cinematic_amount);
+            Camera.main.transform.LookAt(transform.position + transform.forward * 30f, transition);
+            // i need to store the current transiton value and delver the value for next frame
+        }
     }
 
     void speed_on_cmd()
@@ -78,9 +87,9 @@ public class plane_controll : MonoBehaviour
 
     void speed_tune_up()
     {
-        if (f_speed < 30.0f)
-            f_speed = 30.0f;
-        if (f_speed > 80.0f)
+        if (f_speed < 20.0f)//30
+            f_speed = 20.0f;
+        if (f_speed > 80.0f)//80
             f_speed = 80.0f;
     }
     void Gravity_sim()
@@ -126,9 +135,6 @@ public class plane_controll : MonoBehaviour
 
         }
     }
+   
 
-    void rotation_tune(Vector3 rot, float inpuut)
-    {
-     
-    }
 }

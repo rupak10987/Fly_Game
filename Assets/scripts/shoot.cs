@@ -8,6 +8,7 @@ public class shoot : MonoBehaviour
     public  float delay_btn_shots=0.02f;
     private float timer;
     public int mag_size = 20;
+    private Vector3 cam_offset=Vector3.one;
     void Start()
     {
         
@@ -17,12 +18,15 @@ public class shoot : MonoBehaviour
     void FixedUpdate()
     {
         bool firing = Input.GetButton("Fire1");
+      
         if(firing)
         {
-            if(timer>delay_btn_shots)
+           
+            if (timer>delay_btn_shots)
             {
                 timer = 0f;
                 fire_bullet();
+                cam_shake();
             }
             timer += Time.fixedDeltaTime;
         }
@@ -32,7 +36,7 @@ public class shoot : MonoBehaviour
     {
         GameObject finding = GameObject.Find("bullets");
         GameObject capsule = GameObject.Instantiate(finding);
-        capsule.transform.forward = transform.forward.normalized+new Vector3(Random.Range(-0.03f,0.03f),0,0);
+        capsule.transform.forward = transform.forward-0.05f*(transform.up)+new Vector3(Random.Range(-0.03f,0.03f),0,0);
         capsule.transform.position = transform.position;
         capsule.AddComponent<bullet>();
         bullet rb= capsule.GetComponent<bullet>();
@@ -41,5 +45,12 @@ public class shoot : MonoBehaviour
         rb.ynot = capsule.transform.position.y;
         rb.znot = capsule.transform.position.z;
         Destroy(capsule,3f);
+    }
+    void cam_shake()
+    {
+        Vector3 vel = Vector3.zero;
+        cam_offset = Camera.main.transform.position+5f*Camera.main.transform.forward;
+        Camera.main.transform.position = Vector3.SmoothDamp(Camera.main.transform.position, cam_offset, ref vel, 0.09f);
+       ///cam_offset = Vector3.SmoothDamp( cam_offset,Vector3.one, ref vel, 0.1f);
     }
 }

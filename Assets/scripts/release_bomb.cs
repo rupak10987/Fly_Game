@@ -30,10 +30,12 @@ public class release_bomb : MonoBehaviour
     }
     void relez_mother_f_bomb()
     {
-        GameObject finding = GameObject.Find("bomb_demo");
+        GameObject finding = GameObject.Find("bom");
         GameObject littleboy = GameObject.Instantiate(finding);
         littleboy.transform.forward = transform.forward.normalized;
         littleboy.transform.position = transform.position-transform.up*1f;
+        littleboy.transform.localScale=new Vector3(900,900,900);
+       
         littleboy.AddComponent<bullet>();
         bullet rb = littleboy.GetComponent<bullet>();
         //getting the speed of the plane

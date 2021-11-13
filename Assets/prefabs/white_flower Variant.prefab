@@ -73,7 +73,7 @@ PrefabInstance:
     - target: {fileID: -8566682566390198869, guid: 9c01cd99723738c478a037f6b17849d0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 5352238084978967752, guid: 3c5aaaf8bea19d842a7030c188214cf1, type: 3}
+      objectReference: {fileID: 2100000, guid: 40a8d8304162d5d41b594f2c887fc5dc, type: 2}
     - target: {fileID: -2990974214394598701, guid: 9c01cd99723738c478a037f6b17849d0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -81,15 +81,15 @@ PrefabInstance:
     - target: {fileID: -1628623606448119130, guid: 9c01cd99723738c478a037f6b17849d0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2017013404770694325, guid: 3c5aaaf8bea19d842a7030c188214cf1, type: 3}
+      objectReference: {fileID: 7033183562006842855, guid: 917d7150fe50af048b0eefd7c385cba1, type: 3}
     - target: {fileID: 919132149155446097, guid: 9c01cd99723738c478a037f6b17849d0, type: 3}
       propertyPath: m_Name
-      value: white_flower
+      value: white_flower Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2425725778176284691, guid: 9c01cd99723738c478a037f6b17849d0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 5352238084978967752, guid: 3c5aaaf8bea19d842a7030c188214cf1, type: 3}
+      objectReference: {fileID: 2100000, guid: 40a8d8304162d5d41b594f2c887fc5dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c01cd99723738c478a037f6b17849d0, type: 3}
 --- !u!1 &205558828122742050 stripped
